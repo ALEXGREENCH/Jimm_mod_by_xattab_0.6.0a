@@ -1,0 +1,40 @@
+22
+0	Smile, :-), :), =), =)), :-)), :)), +)
+1	Sad, :-(, :(, +(, =(, :-((, :((, +((, =((
+2	Ironic, ;-), ;), ^_~
+3	Tongue, :-P, :P, :-p, :p, +P, =P, +p, =p, :-b, :b, +b, =b
+4	Boss, 8-), 8), B-), B), (H), (h), B-D, BD, B-|
+5	Big Grin, :-D, :D, +D, =D, :-)))), :)))), =)))), *BIGGRIN*
+6	Embarrassed, :-[, :[, (e), (E), :'), :'-), ='), ;'>, ;-.
+7	Angel, O:-), O:), O+), O=), 0:-), 0:), 0+), 0=), (A), (a)
+8	Shock, =-O, =O, =-o, O_O, O_o, o_O
+9	Lips, :-*, :*, :-{}, :{}, +{}, ={}, ^.^, *KISS*
+10	Crying, :'(, :'-(, :"(, ;-(, ;(, ='(, *CRY*
+11	Secret, :-X, :-x, :-#, :#, *SECRET*
+12	Angry, >:o, >:O, >+O, >:o, >+o, >=O, >=o, :-@, *ANGRY*
+13	Stupid, :-|, :|, =|, *ERMM*, *ermm*
+14	Jokingly, *JOKINGLY*, *jokingly*, :o)
+15	Devil, ]:->, }:->, ]:>, }:>, >:-], >:], (6), *DIABLO*, *DEVIL*, *MAD*
+16	Music, [:-}, [:}, [:-), [:), *MUSIC*
+17	In Love, *IN LOVE*, *IN_LOVE*, *INLOVE*
+18	Sick, :-!, :!, :-~, ;-~, :(~, +(~, =(~, *SICK*
+19	Suspirious, :-/, =-/, =/
+20	Rose, @}->--, @}-:--, @>}--`---, (F), (f), @}->-, @};-
+21	Thumbs Up, *THUMBS UP*, *THUMBS_UP*, *THUMBSUP*, *GOOD*, (y), (Y)
+22	Drink, *DRINK*, *BEER*, *beer*, (B), (b)
+23	Give heart, *GIVE_HEART*, *give heart*, *GIVE HEART*, *give heart* 
+24	Bomb, @=
+25	Wacko, %), %-), :-$, :$, *WACKO*
+26	Wassup, *WASSUP*, *SUP*, *MAMBA*
+27	Sorry, *SORRY*
+28	Bravo, *BRAVO*, *CLAPPING*
+29	ROFL, *ROFL*, *ROTFL*, :-))))), :-)))))), :))))), :)))))), =))))), =))))))
+30	Pardon, *PARDON*, =]
+31	No, *NO*
+32	Crazy, *CRAZY*
+33	Don't Know, *DONT_KNOW*, *DONT KNOW*, *UNKNOWN*
+34	Dance, *DANCE*
+35	Yahoo, *YAHOO*
+36	Bye, *BYE*
+37	Acute, ;D, *ACUTE*
+38	Scratch, *SCRATCH*
