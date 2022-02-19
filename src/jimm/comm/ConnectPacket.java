@@ -27,6 +27,16 @@ import jimm.JimmException;
 
 public class ConnectPacket extends Packet
 {
+
+	// Fixed values for various fields in CLI_IDENT packets
+	public static final String FIXED_VERSION = "KICQ 6.6.6";
+	public static final byte[] FIXED_UNKNOWN = {(byte) 0x01, (byte) 0x0A};
+	public static final byte[] FIXED_VER_MAJOR = {(byte) 0x00, (byte) 0x05};
+	public static final byte[] FIXED_VER_MINOR = {(byte) 0x00, (byte) 0x2F};
+	public static final byte[] FIXED_VER_LESSER = {(byte) 0x00, (byte) 0x01};
+	public static final byte[] FIXED_VER_BUILD = {(byte) 0x0E, (byte) 0xD8};
+	public static final byte[] FIXED_VER_SUBBUILD = {(byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x55};
+
 	// Packet types
 	public static final int SRV_CLI_HELLO = 1;
 	public static final int CLI_COOKIE    = 2;
@@ -40,6 +50,12 @@ public class ConnectPacket extends Packet
 
 	// Password (unencrypted, != null only if packet type is CLI_IDENT)
 	protected String password;
+
+	// Language that the client is using (!= null only if packet type is CLI_IDENT)
+	protected String language = "ru";
+
+	// Country where the client is located (!= null only if packet type is CLI_IDENT)
+	protected String country = "ru";
 
 	// Constructs a SRV_HELLO/CLI_HELLO packet
 	public ConnectPacket(int sequence)
@@ -158,6 +174,15 @@ public class ConnectPacket extends Packet
 		{
 			length += 4 + this.uin.length();
 			length += 4 + this.password.length();
+			length += 4 + ConnectPacket.FIXED_VERSION.length();
+			length += 4 + ConnectPacket.FIXED_UNKNOWN.length;
+			length += 4 + ConnectPacket.FIXED_VER_MAJOR.length;
+			length += 4 + ConnectPacket.FIXED_VER_MINOR.length;
+			length += 4 + ConnectPacket.FIXED_VER_LESSER.length;
+			length += 4 + ConnectPacket.FIXED_VER_BUILD.length;
+			length += 4 + ConnectPacket.FIXED_VER_SUBBUILD.length;
+			length += 4 + this.language.length();
+			length += 4 + this.country.length();
 		}
 
 		// Allocate memory
@@ -203,6 +228,63 @@ public class ConnectPacket extends Packet
 			byte[] passwordRaw = Util.decipherPassword(Util.stringToByteArray(this.password));
 			System.arraycopy(passwordRaw, 0, buf, marker + 4, passwordRaw.length);
 			marker += 4 + passwordRaw.length;
+
+			// HELLO.VERSION
+			Util.putWord(buf, marker, 0x0003);
+			Util.putWord(buf, marker + 2, ConnectPacket.FIXED_VERSION.length());
+			byte[] versionRaw = Util.stringToByteArray(ConnectPacket.FIXED_VERSION);
+			System.arraycopy(versionRaw, 0, buf, marker + 4, versionRaw.length);
+			marker += 4 + versionRaw.length;
+
+			// HELLO.UNKNOWN
+			Util.putWord(buf, marker, 0x0016);
+			Util.putWord(buf, marker + 2, ConnectPacket.FIXED_UNKNOWN.length);
+			System.arraycopy(ConnectPacket.FIXED_UNKNOWN, 0, buf, marker + 4, ConnectPacket.FIXED_UNKNOWN.length);
+			marker += 6;
+
+			// HELLO.VER_MAJOR
+			Util.putWord(buf, marker, 0x0017);
+			Util.putWord(buf, marker + 2, ConnectPacket.FIXED_VER_MAJOR.length);
+			System.arraycopy(ConnectPacket.FIXED_VER_MAJOR, 0, buf, marker + 4, ConnectPacket.FIXED_VER_MAJOR.length);
+			marker += 6;
+
+			// HELLO.VER_MINOR
+			Util.putWord(buf, marker, 0x0018);
+			Util.putWord(buf, marker + 2, ConnectPacket.FIXED_VER_MINOR.length);
+			System.arraycopy(ConnectPacket.FIXED_VER_MINOR, 0, buf, marker + 4, ConnectPacket.FIXED_VER_MINOR.length);
+			marker += 6;
+
+			// HELLO.VER_LESSER
+			Util.putWord(buf, marker, 0x0019);
+			Util.putWord(buf, marker + 2, ConnectPacket.FIXED_VER_LESSER.length);
+			System.arraycopy(ConnectPacket.FIXED_VER_LESSER, 0, buf, marker + 4, ConnectPacket.FIXED_VER_LESSER.length);
+			marker += 6;
+
+			// HELLO.VER_BUILD
+			Util.putWord(buf, marker, 0x001A);
+			Util.putWord(buf, marker + 2, ConnectPacket.FIXED_VER_BUILD.length);
+			System.arraycopy(ConnectPacket.FIXED_VER_BUILD, 0, buf, marker + 4, ConnectPacket.FIXED_VER_BUILD.length);
+			marker += 6;
+
+			// HELLO.VER_SUBBUILD
+			Util.putWord(buf, marker, 0x0014);
+			Util.putWord(buf, marker + 2, ConnectPacket.FIXED_VER_SUBBUILD.length);
+			System.arraycopy(ConnectPacket.FIXED_VER_SUBBUILD, 0, buf, marker + 4, ConnectPacket.FIXED_VER_SUBBUILD.length);
+			marker += 8;
+
+			// HELLO.LANGUAGE
+			Util.putWord(buf, marker, 0x000F);
+			Util.putWord(buf, marker + 2, this.language.length());
+			byte[] languageRaw = Util.stringToByteArray(this.language);
+			System.arraycopy(languageRaw, 0, buf, marker + 4, languageRaw.length);
+			marker += 4 + languageRaw.length;
+
+			// HELLO.COUNTRY
+			Util.putWord(buf, marker, 0x000E);
+			Util.putWord(buf, marker + 2, this.country.length());
+			byte[] countryRaw = Util.stringToByteArray(this.country);
+			System.arraycopy(countryRaw, 0, buf, marker + 4, countryRaw.length);
+			marker += 4 + countryRaw.length;
 		}
 
 		// Return

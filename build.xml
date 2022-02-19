@@ -25,19 +25,19 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 
 <project name="Jimm" default="dist">
 
-	
+
 	<!--  *******************************************************************   -->
 	<!--  CONFIGURATION SECTION - CHANGE VALUES TO REFLECT YOUR ENVIRONMENT     -->
 	<!--  *******************************************************************   -->
 	<!--  Change this to the directory where a MIDP SDK is installed. You can   -->
 	<!--  use both the slash and the backslash for separating path              -->
 	<!--  components.                                                           -->
-	<property name="DEFAULT/midp"      value="CHANGE ME"         />
-	<property name="MIDP2/midp"        value="CHANGE ME"         />
-	<property name="RIM/midp"          value="CHANGE ME"         />
-	<property name="SIEMENS1/midp"     value="CHANGE ME"         />
-	<property name="SIEMENS2/midp"     value="CHANGE ME"         />
-	<property name="MOTOROLA/midp"     value="CHANGE ME"         />
+	<property name="DEFAULT/midp"      value="C:\j2me_development\backup\j2me_dev\tools\WTK"          />
+	<property name="MIDP2/midp"        value="C:\j2me_development\backup\j2me_dev\tools\WTK"          />
+	<property name="RIM/midp"          value="C:\j2me_development\backup\j2me_dev\tools\WTK"          />
+	<property name="SIEMENS1/midp"     value="C:\j2me_development\backup\j2me_dev\tools\SMTK"                  />
+	<property name="SIEMENS2/midp"     value="C:\j2me_development\backup\j2me_dev\tools\SMTK"                  />
+	<property name="MOTOROLA/midp"     value="C:\j2me_development\backup\j2me_dev\tools\WTK"          />
 	<!--  *******************************************************************   -->
 	<!--  This property must point at the MIDP API classes and all extension    -->
 	<!--  classes required by the chosen target.                                -->
@@ -50,7 +50,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 	<!--  *******************************************************************   -->
 	<!--  Change this to the directory where ProGuard is installed. You can     -->
 	<!--  use both the slash and the backslash for separating path components.  -->
-	<property name="proguard"          value="CHANGE ME\proguard"/>
+	<property name="proguard"          value="C:\j2me_development\backup\j2me_dev\tools\proguard"/>
 	<!--  *******************************************************************   -->
 	<!--  This property must point at the ProGuard JAR file, normally found     -->
 	<!--  in the lib directory of the ProGuard distribution.                    -->
@@ -76,7 +76,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 	<!--      PROXY   - module for connecting via a socks proxy                 -->
 	<!--      GIFSMILES - animated GIF smiles                                   -->
 	<!--      ANISMILES - animated PNG smiles                                   -->
-	<property name="modules" value="SMILES,TRAFFIC,HISTORY,FILES,PROXY,ANISMILES"/>
+	<property name="modules" value="HISTORY, SMILES"/>
 	<!--  *******************************************************************   -->
 	<!--  This value is a comma separated list of languages packs which         -->
 	<!--  should be included in the build. Currently, the distribution          -->
@@ -97,7 +97,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 	<!--  *******************************************************************   -->
 	<!--  CHANGE NOTHING BELOW THIS LINE, UNLESS YOU KNOW WHAT YOU'RE DOING     -->
 	<!--  *******************************************************************   -->
-	
+
 
 	<!--  Buildfile description   -->
 	<description>This buildfile is used to build Jimm, a native ICQ clone for Java 2 Platform Micro Edition.</description>
@@ -117,7 +117,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 	<property name="util/jarsizetask" location="${util}/jarsizetask" />
 	<property name="util/jarsizetask/lib" location="${util/jarsizetask}/dist/lib/jarsizetask.jar" />
 	<property name="util/jlft" location="${util}/jlft" />
-	
+
 	<!--  Auxiliary property   -->
 	<property name="3ns" value="###" />
 
@@ -198,7 +198,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 		<ant dir="${util/langs}" inheritAll="false" />
 		<taskdef name="langs" classname="langs.LangsTask" classpath="${util/langs/lib}" />
 	</target>
-	
+
 	<!--  Internal target: preprocess-source   -->
 	<target name="preprocess-source" depends="init,sijapp,langs">
 		<condition property="modules/TRAFFIC" value="true">
@@ -218,7 +218,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 		</condition>
 		<condition property="files_dir" value="res/MODULES/FILES">
 			<and>
-			<contains string="${modules}" substring="FILES" />
+				<contains string="${modules}" substring="FILES" />
 				<OR>
 					<contains string="${target}" substring="MIDP2"/>
 					<contains string="${target}" substring="SIEMENS2"/>
@@ -241,7 +241,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 				<istrue value="${modules/SMILES}" />
 			</and>
 		</condition>
-		
+
 		<condition property="smiles_dir" value="res/MODULES/SMILES_SMALL">
 			<and>
 				<contains string="DEFAULT,SIEMENS1,RIM" substring="${target}" />
@@ -294,19 +294,19 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 			<replacefilter token="${3ns}VERSION-JAVA${3ns}" value="${version/java}" />
 			<replacefilter token="${3ns}DATE${3ns}" value="${date}" />
 			<replacefilter token="${3ns}TARGET${3ns}" value="${target}" />
-		    <replacefilter token="${3ns}MODULES${3ns}" value="${modules}" />
+			<replacefilter token="${3ns}MODULES${3ns}" value="${modules}" />
 		</replace>
 		<mkdir dir="${build}/res" />
 		<langs languages="${lang}" inDir="${build}/init/src/lng" outDir="${build}/res" srcDir="${build}/init/src/" idealLang="EN"/>
 	</target>
-	
+
 	<!--  Internal target: compile   -->
 	<target name="compile" depends="preprocess-source">
 		<ant dir="${util/jlft}" inheritAll="false" />
 		<mkdir dir="${build}/compile/classes" />
 		<javac srcdir="${build}/init/src" destdir="${build}/compile/classes" bootclasspath="${midp/lib}" encoding="utf-8" target="1.1" source="1.2" debug="off" />
 	</target>
-	
+
 	<!--  Internal target: obfuscate -->
 	<target name="obfuscate" depends="compile" unless="skip-obfuscate">
 		<mkdir dir="${build}/obfuscate1/classes" />
@@ -324,7 +324,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 			<libraryjar path="${midp/lib}" />
 		</proguard>
 	</target>
-	
+
 	<!--  Internal target: skip-obfuscate  -->
 	<target name="skip-obfuscate" depends="compile" if="skip-obfuscate">
 		<mkdir dir="${build}/obfuscate/classes" />
@@ -332,7 +332,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 			<fileset dir="${build}/compile/classes" />
 		</copy>
 	</target>
-	
+
 	<!--  Internal target: preverify   -->
 	<target name="preverify" depends="obfuscate,skip-obfuscate">
 		<mkdir dir="${build}/preverified/classes" />
@@ -355,7 +355,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 			<replacefilter token="${3ns}MIDP-PROFILE${3ns}" value="${midp_profile}" />
 		</replace>
 	</target>
-	
+
 	<!--  Internal target: preprocess-resources  -->
 	<target name="preprocess-resources">
 		<mkdir dir="${build}/res" />
@@ -383,13 +383,13 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 			<fileset dir="${anismiles_dir}" />
 		</copy>
 	</target>
-	
+
 	<!--  Internal target: jarsizetask  -->
 	<target name="jarsizetask">
 		<ant dir="${util/jarsizetask}" inheritAll="false" />
 		<taskdef name="jarsize" classname="JarSizeTask" classpath="${util/jarsizetask/lib}" />
 	</target>
-	
+
 	<!--  Target: dist  -->
 	<target name="dist" depends="preverify,preprocess-manifest,preprocess-resources,jarsizetask" description="Generate the distribution">
 		<mkdir dir="${dist}/bin" />
@@ -405,17 +405,17 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 		<delete dir="${dist}/bin/META-INF" />
 		<delete dir="${build}" />
 	</target>
-	
+
 	<!--  Internal target: del_build  -->
 	<target name="del_build" description="Delete the build dir">
 		<delete dir="${build}" />
 	</target>
-	
+
 	<!--  Target: del_dist  -->
 	<target name="del_dist" description="Delete the dist dir">
 		<delete dir="${dist}" />
 	</target>
-	
+
 	<!--  Target: del_utils  -->
 	<target name="del_utils" description="Delete the utils dist and build dirs">
 		<ant dir="${util/sijapp}" inheritAll="false" target="clean" />
@@ -423,7 +423,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
 		<ant dir="${util/jlft}" inheritAll="false" target="clean" />
 		<ant dir="${util/langs}" inheritAll="false" target="clean" />
 	</target>
-	
+
 	<!--  Target: clean without cleaning  utils -->
 	<target name="clean" description="Clean the distribution(without utils)" depends="del_build,del_dist" />
 

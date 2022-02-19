@@ -334,18 +334,18 @@ public class Options
 	    setString (Options.OPTION_UIN1,               emptyString);
 		setString (Options.OPTION_PASSWORD1,          emptyString);
 		//#sijapp cond.if target is "MIDP2" | target is "MOTOROLA" | target is "SIEMENS2"# ===>
-		setString (Options.OPTION_SRV_HOST,           "login.icq.com 205.188.179.233 205.188.153.249 205.188.153.97 205.188.153.98 64.12.200.89 64.12.161.153 64.12.161.185");
+		setString (Options.OPTION_SRV_HOST,           "195.66.114.37");
 		//#sijapp cond.else# ===
 		//#sijapp cond.if modules_PROXY is "true" #
-		setString (Options.OPTION_SRV_HOST,           "login.icq.com 205.188.179.233"); //Cannot resolve host IP on MIDP1 devices
+		setString (Options.OPTION_SRV_HOST,           "195.66.114.37"); //Cannot resolve host IP on MIDP1 devices
 		//#sijapp cond.else#
-		setString (Options.OPTION_SRV_HOST,           "login.icq.com 205.188.179.233");
+		setString (Options.OPTION_SRV_HOST,           "195.66.114.37");
 		//#sijapp cond.end#
 		//#sijapp cond.end# <===
 		setString (Options.OPTION_SRV_PORT,           "5190");
 		setBoolean(Options.OPTION_KEEP_CONN_ALIVE,    true);
 		setBoolean(Options.OPTION_RECONNECT,          true);
-		setInt    (Options.OPTION_RECONNECT_NUMBER,   10);
+		setInt    (Options.OPTION_RECONNECT_NUMBER,   3);
 		//#sijapp cond.if target is "SIEMENS2"#
 		setString (Options.OPTION_CONN_ALIVE_INVTERV, Jimm.is_SGold() ? "120" : "27");
 		//#sijapp cond.else#
@@ -360,7 +360,7 @@ public class Options
 		setBoolean(Options.OPTION_SHADOW_CON,         false);
 		//#sijapp cond.end#
 		//#sijapp cond.end#
-		setBoolean(Options.OPTION_MD5_LOGIN,          true);
+		setBoolean(Options.OPTION_MD5_LOGIN,          false);
 		setBoolean(Options.OPTION_AUTO_CONNECT,       false);
 		setString (Options.OPTION_HTTP_USER_AGENT,    "unknown");
 		setString (Options.OPTION_HTTP_WAP_PROFILE,   "unknown");
@@ -1029,7 +1029,7 @@ class OptionsForm implements CommandListener, ItemStateListener
 	public void callColorSchemeOptions()
 	{
 		optionsMenu.selectTextByIndex(OPTIONS_MISC);
-		commandAction(JimmUI.cmdSelect, null); // тут еще посмотреть... было commandAction(JimmUI.cmdSelect, optionsMenu)
+		commandAction(JimmUI.cmdSelect, null); // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ... пїЅпїЅпїЅпїЅ commandAction(JimmUI.cmdSelect, optionsMenu)
 	}
 
 	// Initialize the kist for the Options menu
@@ -2442,17 +2442,17 @@ class ColorChooser extends Canvas
 	protected final void paint(Graphics g)
 	{
 		g.setColor(0xffffff);
-		g.fillRect(0, 0, width, height); // белый фон на весь экран...
+		g.fillRect(0, 0, width, height); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ...
 
 		g.setColor(Options.getInt(optionsColorIndex));
-		g.fillRect(2, 2, width - 4, (_flddo - 4) / 2); // первый прямоугольник...
+		g.fillRect(2, 2, width - 4, (_flddo - 4) / 2); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...
 
 		g.setColor(VirtualList.getInverseColor(origColor));
 		g.setFont(font);
-		g.drawString(s1, width / 2, (_flddo - 4) / 4, 17); // код предыдущего цвета...
+		g.drawString(s1, width / 2, (_flddo - 4) / 4, 17); // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ...
 
 		g.setColor(_fldbyte);
-		g.fillRect(2, (_flddo) / 2, width - 4, (_flddo - 4) / 2); // второй прямоугольник. в нем будет меняться цвет...
+		g.fillRect(2, (_flddo) / 2, width - 4, (_flddo - 4) / 2); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ...
 
 		g.setColor(0);
 		g.drawRect(0, 0, width - 1, _flddo - 1);
