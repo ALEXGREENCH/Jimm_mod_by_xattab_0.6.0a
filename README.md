@@ -14,8 +14,10 @@ https://www.oracle.com/ru/java/technologies/javase-java-archive-javase6-download
 Дополнительно, но не обязательно:
 - NetBeans 8.2 with JDK 8u111
 https://archive.org/details/jdk-8u111-nb-8_2
-- Git
+- Git (для win 2k и )
 https://git-scm.com/downloads
+Последняя версия для win 2k и xp:
+https://github.com/git-for-windows/git/releases/tag/v2.10.0.windows.1
 
 Ant и JDK(6) должны быть добавлены в переменные среды, или прописаны в локальной сессии до папки bin
 
