@@ -1,0 +1,12 @@
+/dist/
+/out/
+/util/jarsizetask/build/
+/util/jarsizetask/dist/
+/util/sijapp/build/
+/util/sijapp/dist/
+/util/jlft/build/
+/util/jlft/dist/
+/util/langs/build/
+/util/langs/dist/
+/JLFT
+/JLFT.bat

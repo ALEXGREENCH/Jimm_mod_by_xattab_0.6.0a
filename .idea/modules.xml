@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Jimm_mod_by_xattab_0.6.0a.iml" filepath="$PROJECT_DIR$/Jimm_mod_by_xattab_0.6.0a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/util/jarsizetask/jarsizetask.iml" filepath="$PROJECT_DIR$/util/jarsizetask/jarsizetask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/util/jlft/jlft.iml" filepath="$PROJECT_DIR$/util/jlft/jlft.iml" />
+      <module fileurl="file://$PROJECT_DIR$/util/langs/langs.iml" filepath="$PROJECT_DIR$/util/langs/langs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/util/sijapp/sijapp.iml" filepath="$PROJECT_DIR$/util/sijapp/sijapp.iml" />
+    </modules>
+  </component>
+</project>
