@@ -16,7 +16,8 @@ https://www.oracle.com/ru/java/technologies/javase-java-archive-javase6-download
 https://archive.org/details/jdk-8u111-nb-8_2
 - Git (для win 2k и )
 https://git-scm.com/downloads
-Последняя версия для win 2k и xp:
+
+Последняя версия git для win 2k и xp:
 https://github.com/git-for-windows/git/releases/tag/v2.10.0.windows.1
 
 Ant и JDK(6) должны быть добавлены в переменные среды, или прописаны в локальной сессии до папки bin
