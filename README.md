@@ -14,7 +14,7 @@ https://www.oracle.com/ru/java/technologies/javase-java-archive-javase6-download
 Дополнительно, но не обязательно:
 - NetBeans 8.2 with JDK 8u111
 https://archive.org/details/jdk-8u111-nb-8_2
-- Git (для win 2k и )
+- Git
 https://git-scm.com/downloads
 
 Последняя версия git для win 2k и xp:
